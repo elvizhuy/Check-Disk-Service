@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 
 class DiskPartitionController extends Controller
 {
-    public function checkDisks ($id) {
+    public function checkDisks () {
         $data = \request()->validate([
+            'id' => 'integer',
             'file_system' => 'string',
             'size' => 'string',
             'used' => 'string',
@@ -22,7 +23,7 @@ class DiskPartitionController extends Controller
             'used' => $data['used'],
             'available' => $data['available'],
             'use%' => $data['use%'],
-            'belongtoVirtualMachine' => $id
+            'belongtoVirtualMachine' => $data['id']
         ]);
         return response([$diskChecking],201);
     }

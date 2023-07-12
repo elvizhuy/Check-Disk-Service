@@ -19,6 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('check-disk')->group(function () {
-    Route::get('/virtual-disk/{id}',[\App\Http\Controllers\DiskPartitionController::class,'checkDisks']);
+    Route::post('/virtual-disk',[\App\Http\Controllers\DiskPartitionController::class,'checkDisks']);
     Route::get('/get-disk/{id}',[\App\Http\Controllers\DiskPartitionController::class,'getDisks']);
 });
