@@ -9,7 +9,7 @@ class DiskPartitionController extends Controller
 {
     public function checkDisks () {
         $data = \request()->validate([
-            'id' => 'integer',
+            'belongToVirtualMachine' => 'integer',
             'file_system' => 'string',
             'size' => 'string',
             'used' => 'string',
@@ -23,7 +23,7 @@ class DiskPartitionController extends Controller
             'used' => $data['used'],
             'available' => $data['available'],
             'use%' => $data['use%'],
-            'belongtoVirtualMachine' => $data['id']
+            'belongtoVirtualMachine' => $data['belongToVirtualMachine']
         ]);
         return response([$diskChecking],201);
     }
