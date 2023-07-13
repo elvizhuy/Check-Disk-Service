@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DiskPartition;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DiskPartitionController extends Controller
 {
@@ -17,6 +18,7 @@ class DiskPartitionController extends Controller
             'use%' => 'string',
         ]);
 
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
         $diskChecking = DiskPartition::create([
             'file_system' => $data['file_system'],
             'size' => $data['size'],
@@ -29,7 +31,8 @@ class DiskPartitionController extends Controller
     }
 
     public function getDisks ($id){
+        $clientIP = request()->ip();
         $diskData = DiskPartition::find($id);
-        return response([$diskData],200);
+        return response([$diskData,$clientIP],200);
     }
 }
