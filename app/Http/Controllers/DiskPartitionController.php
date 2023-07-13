@@ -31,7 +31,7 @@ class DiskPartitionController extends Controller
     }
 
     public function getDisks ($id){
-        $diskData = DiskPartition::query()->where('belongtoVirtualMachine',$id)->first();
+        $diskData = DiskPartition::query()->where('belongtoVirtualMachine',$id)->get();
         return response([$diskData],200);
     }
 }
