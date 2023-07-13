@@ -30,8 +30,10 @@ class DiskPartitionController extends Controller
         return response([$diskChecking],201);
     }
 
-    public function getDisks ($id){
-        $diskData = DiskPartition::query()->where('belongtoVirtualMachine',$id)->get();
+    public function getDisks (){
+        $id = \request()->get('virtual_id');
+        $pages = \request()->get('pages');
+        $diskData = DiskPartition::query()->where('belongtoVirtualMachine',$id)->paginate($pages);
         return response([$diskData],200);
     }
 }
