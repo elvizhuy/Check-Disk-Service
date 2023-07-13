@@ -32,7 +32,7 @@ class DiskPartitionController extends Controller
 
     public function getDisks ($id){
         $clientIP = request()->ip();
-        $diskData = DiskPartition::find($id);
+        $diskData = DiskPartition::find($clientIP);
         return response([$diskData,$clientIP],200);
     }
 }
