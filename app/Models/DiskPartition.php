@@ -13,6 +13,6 @@ class DiskPartition extends Model
 
     public function virtualMachine () : BelongsTo
     {
-        return $this->belongsTo('virtualmachine','belongtoVirtualMachine','id');
+        return $this->belongsTo('virtualmachines','belongtoVirtualMachine','id');
     }
 }
