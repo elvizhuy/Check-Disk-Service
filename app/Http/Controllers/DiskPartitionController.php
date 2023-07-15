@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\DiskPartitionCollection;
+use App\Http\Resources\DiskPartitionResource;
 use App\Models\DiskPartition;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
