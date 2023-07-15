@@ -16,5 +16,5 @@ RUN composer install
 #ENV APP_ENV=local
 EXPOSE 8000
 
-CMD php artisan serve --host=0.0.0.0 --port=8000
+CMD php artisan migrate && php artisan serve --host=0.0.0.0 --port=8000
 
