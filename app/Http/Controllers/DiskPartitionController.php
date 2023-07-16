@@ -35,7 +35,7 @@ class DiskPartitionController extends Controller
     public function getDisks (){
         $id = \request()->get('virtual_id');
         $limit = \request()->get('limit');
-        $diskData = DiskPartition::query()->where('belongtoVirtualMachine',$id)->paginate($limit);
+        $diskData = DiskPartition::query()->where('belongtoVirtualMachine',$id)->orderBy('created_at','desc')->paginate($limit);
         return response([new DiskPartitionCollection($diskData)],200);
     }
 }
