@@ -20,7 +20,7 @@ class DiskPartitionResource extends JsonResource
             'size'=> $this->size,
             'used' => $this->used,
             'available' => $this->available,
-            'use%' => $this->use,
+            'use_percentage' => $this->use_percentage,
             'belongtoVirtualMachine' =>$this->belongtoVirtualMachine,
             'created_at' => (new \DateTime($this->created_at))->format('d-m-Y H:m:s'),
             'updated_at' => (new \DateTime($this->updated_at))->format('d-m-Y H:m:s'),

@@ -17,7 +17,7 @@ class DiskPartitionController extends Controller
             'size' => 'string',
             'used' => 'string',
             'available' => 'string',
-            'use%' => 'string',
+            'use_percentage' => 'string',
         ]);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
@@ -26,7 +26,7 @@ class DiskPartitionController extends Controller
             'size' => $data['size'],
             'used' => $data['used'],
             'available' => $data['available'],
-            'use%' => $data['use%'],
+            'use_percentage' => $data['use_percentage'],
             'belongtoVirtualMachine' => $data['belongToVirtualMachine']
         ]);
         return response([$diskChecking],201);
@@ -36,6 +36,6 @@ class DiskPartitionController extends Controller
         $id = \request()->get('virtual_id');
         $limit = \request()->get('limit');
         $diskData = DiskPartition::query()->where('belongtoVirtualMachine',$id)->paginate($limit);
-        return response([$diskData],200);
+        return response([new DiskPartitionCollection($diskData)],200);
     }
 }

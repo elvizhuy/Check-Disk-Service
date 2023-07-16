@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string('size')->nullable();
             $table->string('used')->nullable();
             $table->string('available')->nullable();
-            $table->string('use%')->nullable();
+            $table->string('use_percentage')->nullable();
             $table->bigInteger('belongtoVirtualMachine')->unsigned()->nullable();
             $table->foreign('belongtoVirtualMachine')->references('id')->on('virtualmachines');
             $table->timestamps();

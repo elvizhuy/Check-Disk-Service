@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class DiskPartition extends Model
 {
     use HasFactory;
-    protected $fillable = ['file_system','size','used','available','use%','belongtoVirtualMachine'];
+    protected $fillable = ['file_system','size','used','available','use_percentage','belongtoVirtualMachine'];
 
     public function virtualMachine () : BelongsTo
     {
