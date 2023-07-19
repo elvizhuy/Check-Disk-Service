@@ -42,6 +42,11 @@ pipeline{
                     sh 'php artisan migrate'
                 }
             }
+            steps{
+                dir("Check-Disk-Service"){
+                    sh 'docker run -d -p 8000:8000 --name disk-partition-service disk-partition'
+                }
+            }
         }
         // stage("Unit Test"){
         //     steps{
@@ -50,12 +55,12 @@ pipeline{
         //         }
         //     }
         // }
-        stage("Run"){
-            steps{
-                dir("Check-Disk-Service"){
-                    sh 'docker run -d -p 8000:8000 --name disk-partition-service disk-partition'
-                }
-            }
-        }
+        // stage("Run"){
+        //     steps{
+        //         dir("Check-Disk-Service"){
+        //             sh 'docker run -d -p 8000:8000 --name disk-partition-service disk-partition'
+        //         }
+        //     }
+        // }
     }
 }
