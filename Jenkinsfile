@@ -34,11 +34,16 @@ pipeline{
                     sh 'echo DB_DATABASE=${DB_DATABASE} >> .env'
                     sh 'echo DB_PASSWORD=${DB_PASSWORD} >> .env'
                     sh 'php artisan key:generate'
-                    sh 'docker -v ${CURRENT_DIR}/env:/var/www/html'
+
                     // sh 'cp .env .env.testing'
                 }
             }
         }
+        stage("Copy Env"){
+                    steps{
+                        sh 'docker -v ${CURRENT_DIR}/env:/var/www/html'
+                    }
+                }
         // stage("Push"){
         //     steps{
         //         dir("Check-Disk-Service"){
@@ -48,9 +53,7 @@ pipeline{
         // }
         stage("Run"){
             steps{
-                dir("Check-Disk-Service"){
                     sh 'docker run -d -p 8000:8000 --name disk-partition-service disk-partition'
-                }
             }
         }
     }
