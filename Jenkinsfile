@@ -13,7 +13,7 @@ pipeline{
         }
         stage("Docker build") {
             steps {
-                sh "docker rmi Check-Disk-Service/Check-Disk-Service"
+                sh "docker rmi check-disk-service/check-disk-service"
                 sh "docker build -t disk-partition ."
             }
         }
