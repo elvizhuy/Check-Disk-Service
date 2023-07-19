@@ -11,6 +11,12 @@ pipeline{
                 sh "git clone https://github.com/elvizhuy/Check-Disk-Service.git"
             }
         }
+        stage("Docker build") {
+            steps {
+                sh "docker rmi Check-Disk-Service/Check-Disk-Service"
+                sh "docker build -t disk-partition ."
+            }
+        }
         stage("Build"){
             environment {
                 DB_HOST = credentials("10.0.0.55")
