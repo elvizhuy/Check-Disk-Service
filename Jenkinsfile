@@ -29,6 +29,10 @@ pipeline{
                    }
                }
                 stage("Pull Image") {
+                 environment {
+                                       DOCKER_USERNAME = credentials("NguyenNgocHuy")
+                                       DOCKER_PASSWORD = credentials("daniel0908")
+                                   }
                                   steps {
                                       sh "docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}"
                                       sh "docker pull disk-partition"
