@@ -10,6 +10,9 @@
         "GStringExpressionWithinString": {
             "enabled": false
         },
+        "Indentation": {
+            "enabled": false
+        },
         "SpaceBeforeOpeningBrace": {
             "enabled": false
         },
