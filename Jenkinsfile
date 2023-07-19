@@ -6,7 +6,7 @@ pipeline{
                 deleteDir()
             }
         }
-        stage("Clone Repo") {
+        stage("Clone Repository") {
             steps{
                 sh "git clone https://github.com/elvizhuy/Check-Disk-Service.git"
             }
