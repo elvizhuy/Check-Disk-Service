@@ -11,7 +11,14 @@ pipeline{
                 sh "git clone https://github.com/elvizhuy/Check-Disk-Service.git"
             }
         }
-
+        stage("Docker build") {
+            steps {
+                dir("Check-Disk-Service"){
+                    // sh "docker rmi check-disk-service"
+                    sh "docker build -t disk-partition ."
+                }
+            }
+        }
         stage("Build"){
             environment {
                 DB_HOST = credentials("10.0.0.55")
@@ -42,16 +49,10 @@ pipeline{
         //         }
         //     }
         // }
-        // stage("Code coverage") {
-        //     steps {
-        //         sh "vendor/bin/phpunit --coverage-html 'reports/coverage'"
-        //     }
-        // }
-        stage("Docker build") {
-            steps {
+        stage("Run"){
+            steps{
                 dir("Check-Disk-Service"){
-                    sh "docker rmi check-disk-service"
-                    sh "docker build -t disk-partition ."
+                    sh 'docker run -d -p 8000:8000 --name disk-partition-service disk-partition'
                 }
             }
         }
