@@ -34,7 +34,7 @@ pipeline{
                                       sh "docker pull disk-partition"
                                   }
                               }
-        stage("Build"){
+        stage("Build Container"){
             environment {
                 DB_HOST = credentials("10.0.0.55")
                 DB_DATABASE = credentials("quanlybackup")
@@ -60,7 +60,7 @@ pipeline{
                     }
                 }
 
-        stage("Run"){
+        stage("Run Container"){
             steps{
                     sh 'docker run -d -p 8000:8000 --name disk-partition-service disk-partition'
             }
