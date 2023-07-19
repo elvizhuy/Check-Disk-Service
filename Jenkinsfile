@@ -40,13 +40,14 @@ pipeline{
                     sh 'php artisan key:generate'
                     // sh 'cp .env .env.testing'
                     sh 'php artisan migrate'
-                }
-            }
-            steps{
-                dir("Check-Disk-Service"){
                     sh 'docker run -d -p 8000:8000 --name disk-partition-service disk-partition'
                 }
             }
+            // steps{
+            //     dir("Check-Disk-Service"){
+
+            //     }
+            // }
         }
         // stage("Unit Test"){
         //     steps{
