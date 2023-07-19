@@ -6,11 +6,13 @@ pipeline{
                 deleteDir()
             }
         }
+
         stage("Clone Repository") {
             steps{
                 sh "git clone https://github.com/elvizhuy/Check-Disk-Service.git"
             }
         }
+
         stage("Build Image") {
             steps {
                 dir("Check-Disk-Service"){
@@ -18,26 +20,29 @@ pipeline{
                 }
             }
         }
-       stage("Push Image") {
-                   environment {
-                       DOCKER_USERNAME = credentials("NguyenNgocHuy")
-                       DOCKER_PASSWORD = credentials("daniel0908")
-                   }
-                   steps {
-                       sh "docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}"
-                       sh "docker image push disk-partition"
-                   }
-               }
-                stage("Pull Image") {
-                 environment {
-                                       DOCKER_USERNAME = credentials("NguyenNgocHuy")
-                                       DOCKER_PASSWORD = credentials("daniel0908")
-                                   }
-                                  steps {
-                                      sh "docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}"
-                                      sh "docker pull disk-partition"
-                                  }
-                              }
+
+        stage("Push Image") {
+            environment {
+                DOCKER_USERNAME = credentials("NguyenNgocHuy")
+                DOCKER_PASSWORD = credentials("daniel0908")
+            }
+            steps {
+                sh "docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}"
+                sh "docker image push disk-partition"
+            }
+        }
+
+        stage("Pull Image") {
+            environment {
+                DOCKER_USERNAME = credentials("NguyenNgocHuy")
+                DOCKER_PASSWORD = credentials("daniel0908")
+            }
+            steps {
+                sh "docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}"
+                sh "docker pull disk-partition"
+            }
+        }
+
         stage("Build Container"){
             environment {
                 DB_HOST = credentials("10.0.0.55")
@@ -46,7 +51,7 @@ pipeline{
                 DB_PASSWORD = credentials("abcd@1234")
                 CURRENT_DIR = '/Check-Disk-Service/env'
             }
-            steps{
+            steps {
                 dir("Check-Disk-Service"){
                     sh 'cp .env.example .env'
                     sh 'echo DB_HOST=${DB_HOST} >> .env'
@@ -58,15 +63,16 @@ pipeline{
                 }
             }
         }
+
         stage("Copy Env"){
-                    steps{
-                        sh 'docker -v ${CURRENT_DIR}/env:/var/www/html'
-                    }
-                }
+            steps {
+                sh 'docker -v ${CURRENT_DIR}/env:/var/www/html'
+            }
+        }
 
         stage("Run Container"){
-            steps{
-                    sh 'docker run -d -p 8000:8000 --name disk-partition-service disk-partition'
+            steps {
+                sh 'docker run -d -p 8000:8000 --name disk-partition-service disk-partition'
             }
         }
     }
