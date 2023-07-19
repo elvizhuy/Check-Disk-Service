@@ -11,13 +11,29 @@ pipeline{
                 sh "git clone https://github.com/elvizhuy/Check-Disk-Service.git"
             }
         }
-        stage("Docker build") {
+        stage("Build Image") {
             steps {
                 dir("Check-Disk-Service"){
                     sh "docker build -t disk-partition ."
                 }
             }
         }
+       stage("Push Image") {
+                   environment {
+                       DOCKER_USERNAME = credentials("NguyenNgocHuy")
+                       DOCKER_PASSWORD = credentials("daniel0908")
+                   }
+                   steps {
+                       sh "docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}"
+                       sh "docker image push disk-partition"
+                   }
+               }
+                stage("Pull Image") {
+                                  steps {
+                                      sh "docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}"
+                                      sh "docker pull disk-partition"
+                                  }
+                              }
         stage("Build"){
             environment {
                 DB_HOST = credentials("10.0.0.55")
@@ -34,7 +50,6 @@ pipeline{
                     sh 'echo DB_DATABASE=${DB_DATABASE} >> .env'
                     sh 'echo DB_PASSWORD=${DB_PASSWORD} >> .env'
                     sh 'php artisan key:generate'
-
                     // sh 'cp .env .env.testing'
                 }
             }
@@ -44,13 +59,7 @@ pipeline{
                         sh 'docker -v ${CURRENT_DIR}/env:/var/www/html'
                     }
                 }
-        // stage("Push"){
-        //     steps{
-        //         dir("Check-Disk-Service"){
-        //             sh 'php artisan test'
-        //         }
-        //     }
-        // }
+
         stage("Run"){
             steps{
                     sh 'docker run -d -p 8000:8000 --name disk-partition-service disk-partition'
