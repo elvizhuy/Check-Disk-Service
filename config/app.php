@@ -71,7 +71,6 @@ return [
     */
 
     'timezone' => env('TIMEZONE','Asia/Ho_Chi_Minh'),
-
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
