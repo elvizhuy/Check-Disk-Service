@@ -14,8 +14,6 @@ pipeline{
         stage("Docker build") {
             steps {
                 dir("Check-Disk-Service"){
-                    sh "docker stop disk-partition-service"
-                    sh "docker rm disk-partition-service"
                     sh "docker build -t disk-partition ."
                 }
             }
