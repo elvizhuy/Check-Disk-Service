@@ -42,8 +42,9 @@ pipeline{
                 DOCKER_PASSWORD = credentials("Huynn@0908#!")
             }
             steps {
-                sh "docker login --username ${DOCKER_USERNAME} --password-stdin ${DOCKER_PASSWORD}"
-                sh "docker image push disk-partition"
+                // sh "docker login --username ${DOCKER_USERNAME} --password-stdin ${DOCKER_PASSWORD}"
+                sh "docker login --username NguyenNgocHuy --password Huynn@0908#!"
+                sh "docker push nguyenngochuy/Isofh:disk-partition"
             }
         }
 
