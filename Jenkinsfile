@@ -12,27 +12,13 @@ pipeline{
                 sh "git clone https://github.com/elvizhuy/Check-Disk-Service.git"
             }
         }
-
-        stage("Config Env"){
-            environment {
-                DB_HOST = credentials("10.0.0.55")
-                DB_DATABASE = credentials("quanlybackup")
-                DB_USERNAME = credentials("root")
-                DB_PASSWORD = credentials("abcd@1234")
-            }
+        stage("Copy & Setup Eviroiment"){
             steps {
                 dir("Check-Disk-Service"){
-                    sh 'curl -sS https://getcomposer.org/installer'
-                    sh 'composer install'
-                    sh 'cp .env.example .env'
-                    sh 'echo DB_HOST=${DB_HOST} >> .env'
-                    sh 'echo DB_USERNAME=${DB_USERNAME} >> .env'
-                    sh 'echo DB_DATABASE=${DB_DATABASE} >> .env'
-                    sh 'echo DB_PASSWORD=${DB_PASSWORD} >> .env'
+                    sh 'bash ./script-build/setup-evn.sh'
                 }
             }
         }
-
         // stage("Build Image") {
         //     steps {
         //         dir("Check-Disk-Service"){
