@@ -32,13 +32,13 @@ pipeline{
             }
         }
 
-        stage("Build Image") {
-            steps {
-                dir("Check-Disk-Service"){
-                    sh "docker build -t disk-partition ."
-                }
-            }
-        }
+        // stage("Build Image") {
+        //     steps {
+        //         dir("Check-Disk-Service"){
+        //             sh "docker build -t disk-partition ."
+        //         }
+        //     }
+        // }
 
         // stage("Copy Env"){
         //     environment {
