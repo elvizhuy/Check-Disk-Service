@@ -19,13 +19,13 @@ pipeline{
                 }
             }
         }
-        // stage("Build Image") {
-        //     steps {
-        //         dir("Check-Disk-Service"){
-        //             sh "docker build -t disk-partition ."
-        //         }
-        //     }
-        // }
+        stage("Build Image") {
+            steps {
+                dir("Check-Disk-Service"){
+                    sh "docker build -t disk-partition ."
+                }
+            }
+        }
 
         // stage("Copy Env"){
         //     environment {
@@ -36,24 +36,24 @@ pipeline{
         //     }
         // }
 
-        // stage("Push Image") {
-        //     environment {
-        //         DOCKER_USERNAME = credentials("NguyenNgocHuy")
-        //         DOCKER_PASSWORD = credentials("daniel0908")
-        //     }
-        //     steps {
-        //         sh "docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}"
-        //         sh "docker image push disk-partition"
-        //     }
-        // }
+        stage("Push Image") {
+            environment {
+                DOCKER_USERNAME = credentials("NguyenNgocHuy")
+                DOCKER_PASSWORD = credentials("Huynn@0908#!")
+            }
+            steps {
+                sh "docker login --username ${DOCKER_USERNAME} --password-stdin ${DOCKER_PASSWORD}"
+                sh "docker image push disk-partition"
+            }
+        }
 
         // stage("Pull Image") {
         //     environment {
         //         DOCKER_USERNAME = credentials("NguyenNgocHuy")
-        //         DOCKER_PASSWORD = credentials("daniel0908")
+        //         DOCKER_PASSWORD = credentials("Huynn@0908#!")
         //     }
         //     steps {
-        //         sh "docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}"
+        //         sh "docker login --username ${DOCKER_USERNAME} --password-sdtin ${DOCKER_PASSWORD}"
         //         sh "docker pull disk-partition"
         //     }
         // }
