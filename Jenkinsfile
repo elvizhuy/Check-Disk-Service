@@ -12,24 +12,30 @@ pipeline{
                 sh "git clone https://github.com/elvizhuy/Check-Disk-Service.git"
             }
         }
-
+        stage("Copy file Evn"){
+            steps {
+                dir("Check-Disk-Service"){
+                    sh 'cp .env.example .env'
+                }
+            }
+        }
         stage("Config Env"){
-            // environment {
-            //     DB_HOST = credentials("10.0.0.55")
-            //     DB_DATABASE = credentials("quanlybackup")
-            //     DB_USERNAME = credentials("root")
-            //     DB_PASSWORD = credentials("abcd@1234")
-            // }
+            environment {
+                DB_HOST = credentials("10.0.0.55")
+                DB_DATABASE = credentials("quanlybackup")
+                DB_USERNAME = credentials("root")
+                DB_PASSWORD = credentials("abcd@1234")
+            }
             steps {
                 dir("Check-Disk-Service"){
                     // sh 'curl -sS https://getcomposer.org/installer'
                     // sh 'composer install'
                     // sh 'rm -rf .evn'
-                    sh 'cp .env.example .env'
-                    // sh 'echo DB_HOST=${DB_HOST} >> .env'
-                    // sh 'echo DB_USERNAME=${DB_USERNAME} >> .env'
-                    // sh 'echo DB_DATABASE=${DB_DATABASE} >> .env'
-                    // sh 'echo DB_PASSWORD=${DB_PASSWORD} >> .env'
+                    // sh 'cp .env.example .env'
+                    sh 'echo DB_HOST=${DB_HOST} >> .env'
+                    sh 'echo DB_USERNAME=${DB_USERNAME} >> .env'
+                    sh 'echo DB_DATABASE=${DB_DATABASE} >> .env'
+                    sh 'echo DB_PASSWORD=${DB_PASSWORD} >> .env'
                 }
             }
         }
