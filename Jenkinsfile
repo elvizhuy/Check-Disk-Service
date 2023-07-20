@@ -30,7 +30,7 @@ pipeline{
         stage("Push Image") {
             steps {
                 sh "docker login --username bachdangtuan --password @Dangtuan12"
-                sh "docker push nguyenngochuy/isofh_repo:disk-partition"
+                sh "docker push bachdangtuan/disk-partition"
             }
         }
 
