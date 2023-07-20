@@ -22,15 +22,16 @@ pipeline{
         stage("Build Image") {
             steps {
                 dir("Check-Disk-Service"){
-                    sh "docker build -t bachdangtuan/disk-partition ."
+                    sh "docker build -t nguyenngochuy/disk-partition ."
                 }
             }
         }
 
         stage("Push Image") {
             steps {
-                sh "docker login --username bachdangtuan --password @Dangtuan12"
-                sh "docker push bachdangtuan/disk-partition"
+                sh "docker login --username nguyenngochuy --password Huynn@0908#!"
+                sh "docker push nguyenngochuy/disk-partition"
+
             }
         }
 
