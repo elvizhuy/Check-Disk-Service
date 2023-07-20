@@ -36,7 +36,7 @@ pipeline{
         // stage("Build Image") {
         //     steps {
         //         dir("Check-Disk-Service"){
-        //             sh "docker build -t disk-partition ."
+        //             sh "docker image build -t disk-partition ."
         //         }
         //     }
         // }
