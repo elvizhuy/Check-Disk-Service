@@ -38,7 +38,7 @@ pipeline{
 
         stage("Push Image") {
             environment {
-                DOCKER_USERNAME = credentials("NguyenNgocHuy")
+                DOCKER_USERNAME = credentials("nguyenngochuy")
                 DOCKER_PASSWORD = credentials("Huynn@0908#!")
             }
             steps {
