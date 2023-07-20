@@ -27,22 +27,9 @@ pipeline{
             }
         }
 
-        // stage("Copy Env"){
-        //     environment {
-        //         CURRENT_DIR = '/var/lib/jenkins/jobs/BE-DiskPartition/workspace/Check-Disk-Service/env'
-        //     }
-        //     steps {
-        //         sh 'docker -v ${CURRENT_DIR}/env:/var/www/html'
-        //     }
-        // }
-
         stage("Push Image") {
-            environment {
-                DOCKER_USERNAME = credentials("nguyenngochuy")
-                DOCKER_PASSWORD = credentials("Huynn@0908#!")
-            }
             steps {
-                sh "docker login --username ${DOCKER_USERNAME} --password Huynn@0908#!"
+                sh "docker login --username nguyenngochuy --password Huynn@0908#!"
                 sh "docker push nguyenngochuy/isofh_repo:disk-partition"
             }
         }
