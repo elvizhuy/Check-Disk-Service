@@ -43,13 +43,12 @@ pipeline{
             }
         }
 
-        stage("Build Container"){
+        stage("Config Env"){
             environment {
                 DB_HOST = credentials("10.0.0.55")
                 DB_DATABASE = credentials("quanlybackup")
                 DB_USERNAME = credentials("root")
                 DB_PASSWORD = credentials("abcd@1234")
-                CURRENT_DIR = '/Check-Disk-Service/env'
             }
             steps {
                 dir("Check-Disk-Service"){
@@ -58,13 +57,14 @@ pipeline{
                     sh 'echo DB_USERNAME=${DB_USERNAME} >> .env'
                     sh 'echo DB_DATABASE=${DB_DATABASE} >> .env'
                     sh 'echo DB_PASSWORD=${DB_PASSWORD} >> .env'
-                    sh 'php artisan key:generate'
-                    // sh 'cp .env .env.testing'
                 }
             }
         }
 
         stage("Copy Env"){
+            environment {
+                CURRENT_DIR = '/Check-Disk-Service/env'
+            }
             steps {
                 sh 'docker -v ${CURRENT_DIR}/env:/var/www/html'
             }
