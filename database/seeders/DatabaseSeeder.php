@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,15 +15,15 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        \App\Models\DiskPartition::factory()->create([
-            'file_system' => '/dev/null',
-            'size' => '100GB',
-            'used' => '43GB',
-            'available' => '12GB',
-            'use%' => '56%',
-            'belongtoVirtualMachine' => 1,
-            'created_at' => '2023-05-10 23:27:00',
-            'updated_at' => '2023-05-10 16:27:00'
+        \App\Models\User::factory()->create([
+            'name' => 'Nguyen Ngoc Huy',
+            'email' => 'elvizhuy@gmail.com',
+            'password' => Hash::make('abcd@1234'),
+        ]);
+        \App\Models\User::factory()->create([
+            'name' => 'Bach Dang Tuan',
+            'email' => 'bachdangtuan.dev@gmail.com',
+            'password' => Hash::make('abcd@1234'),
         ]);
     }
 }
