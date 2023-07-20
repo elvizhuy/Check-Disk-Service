@@ -4,8 +4,6 @@ pipeline{
         stage("Clean up"){
             steps{
                 deleteDir()
-                sh 'cd /var/lib/jenkins/jobs/BE-DiskPartition/workspace'
-                sh 'rm -r Check-Disk-Service'
             }
         }
 
