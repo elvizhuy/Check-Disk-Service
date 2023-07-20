@@ -22,6 +22,7 @@ pipeline{
             }
             steps {
                 dir("Check-Disk-Service"){
+                    sh 'curl -sS https://getcomposer.org/installer'
                     sh 'composer install'
                     sh 'cp .env.example .env'
                     sh 'echo DB_HOST=${DB_HOST} >> .env'
