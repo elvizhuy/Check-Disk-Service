@@ -52,7 +52,7 @@ pipeline{
 
         stage("Deployment"){
             steps {
-                sh 'docker run -d -p 8000:8000 --name disk-partition-service disk-partition'
+                sh 'docker run -d -p 8000:8000 --name disk-partition-service nguyenngochuy/disk-partition'
             }
         }
     }
