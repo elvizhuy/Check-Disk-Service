@@ -14,12 +14,12 @@ pipeline{
         }
 
         stage("Config Env"){
-            // environment {
-            //     DB_HOST = credentials("10.0.0.55")
-            //     DB_DATABASE = credentials("quanlybackup")
-            //     DB_USERNAME = credentials("root")
-            //     DB_PASSWORD = credentials("abcd@1234")
-            // }
+            environment {
+                DB_HOST = credentials("10.0.0.55")
+                DB_DATABASE = credentials("quanlybackup")
+                DB_USERNAME = credentials("root")
+                DB_PASSWORD = credentials("abcd@1234")
+            }
             steps {
                 dir("Check-Disk-Service"){
                     // sh 'curl -sS https://getcomposer.org/installer'
