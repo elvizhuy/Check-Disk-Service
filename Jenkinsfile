@@ -24,12 +24,12 @@ pipeline{
                 dir("Check-Disk-Service"){
                     // sh 'curl -sS https://getcomposer.org/installer'
                     // sh 'composer install'
-                    sh 'rm -rf .evn'
+                    // sh 'rm -rf .evn'
                     sh 'cp .env.example .env'
-                    sh 'echo DB_HOST=${DB_HOST} >> .env'
-                    sh 'echo DB_USERNAME=${DB_USERNAME} >> .env'
-                    sh 'echo DB_DATABASE=${DB_DATABASE} >> .env'
-                    sh 'echo DB_PASSWORD=${DB_PASSWORD} >> .env'
+                    // sh 'echo DB_HOST=${DB_HOST} >> .env'
+                    // sh 'echo DB_USERNAME=${DB_USERNAME} >> .env'
+                    // sh 'echo DB_DATABASE=${DB_DATABASE} >> .env'
+                    // sh 'echo DB_PASSWORD=${DB_PASSWORD} >> .env'
                 }
             }
         }
