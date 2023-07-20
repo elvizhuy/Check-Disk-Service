@@ -42,7 +42,7 @@ pipeline{
 
         // stage("Copy Env"){
         //     environment {
-        //         CURRENT_DIR = '/Check-Disk-Service/env'
+        //         CURRENT_DIR = '/var/lib/jenkins/jobs/BE-DiskPartition/workspace/Check-Disk-Service/env'
         //     }
         //     steps {
         //         sh 'docker -v ${CURRENT_DIR}/env:/var/www/html'
