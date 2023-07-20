@@ -37,7 +37,9 @@ pipeline{
 
         stage("SSH") {
             steps {
+                dir("Check-Disk-Service"){
                 sh 'bash ./script-build/ssh-login.sh'
+                }
             }
         }
 
