@@ -12,7 +12,7 @@ pipeline{
                 sh "git clone https://github.com/elvizhuy/Check-Disk-Service.git"
             }
         }
-        stage("Copy & Setup Eviroiment"){
+        stage("Copy & Setup Environment"){
             steps {
                 dir("Check-Disk-Service"){
                     sh 'bash ./script-build/setup-evn.sh'
