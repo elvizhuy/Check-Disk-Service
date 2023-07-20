@@ -1,2 +1,1 @@
-ssh isofh@10.0.0.55
-123123
+sshpass -p "123123" ssh isofh@10.0.0.55
