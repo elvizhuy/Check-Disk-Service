@@ -22,7 +22,7 @@ pipeline{
         stage("Build Image") {
             steps {
                 dir("Check-Disk-Service"){
-                    sh "docker build -t disk-partition ."
+                    sh "docker build -t bachdangtuan/disk-partition ."
                 }
             }
         }
