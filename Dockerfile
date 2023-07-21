@@ -12,8 +12,6 @@ COPY . /var/www/html
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer install
 
-
-#ENV APP_ENV=local
 EXPOSE 8000
 
 CMD php artisan migrate && php artisan db:seed && php artisan serve --host=0.0.0.0 --port=8000
