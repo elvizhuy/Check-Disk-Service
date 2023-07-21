@@ -58,6 +58,8 @@ pipeline{
 
         stage("Deployment"){
             steps {
+                sh "docker stop disk-partition-service"
+                sh "docker rm disk-partition-service"
                 sh "docker run -d -p 8000:8000 --name disk-partition-service ${dockerImage}"
             }
         }
