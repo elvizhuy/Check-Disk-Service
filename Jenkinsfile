@@ -1,6 +1,10 @@
 pipeline{
     agent any
 
+    environment {
+        def dockerImage = 'nguyenngochuy/disk-partition'
+    }
+
     stages {
         stage("Clean up"){
             steps{
@@ -13,6 +17,7 @@ pipeline{
                 sh "git clone https://github.com/elvizhuy/Check-Disk-Service.git"
             }
         }
+
         stage("Copy & Setup Environment"){
             steps {
                 dir("Check-Disk-Service"){
@@ -20,10 +25,11 @@ pipeline{
                 }
             }
         }
+
         stage("Build Image") {
             steps {
                 dir("Check-Disk-Service"){
-                    sh "docker build -t nguyenngochuy/disk-partition ."
+                    sh "docker build -t ${dockerImage} ."
                 }
             }
         }
@@ -31,7 +37,7 @@ pipeline{
         stage("Push Image") {
             steps {
                 sh "docker login --username nguyenngochuy --password Huynn@0908#!"
-                sh "docker push nguyenngochuy/disk-partition"
+                sh "docker push ${dockerImage}"
             }
         }
 
@@ -46,13 +52,13 @@ pipeline{
         stage("Pull Image") {
             steps {
                 sh "docker login --username nguyenngochuy --password Huynn@0908#!"
-                sh "docker pull nguyenngochuy/disk-partition"
+                sh "docker pull ${dockerImage}"
             }
         }
 
         stage("Deployment"){
             steps {
-                sh 'docker run -d -p 8000:8000 --name disk-partition-service nguyenngochuy/disk-partition'
+                sh "docker run -d -p 8000:8000 --name disk-partition-service ${dockerImage}"
             }
         }
     }
