@@ -1,6 +1,7 @@
 pipeline{
     agent any
-    stages{
+
+    stages {
         stage("Clean up"){
             steps{
                 deleteDir()
@@ -31,7 +32,6 @@ pipeline{
             steps {
                 sh "docker login --username nguyenngochuy --password Huynn@0908#!"
                 sh "docker push nguyenngochuy/disk-partition"
-
             }
         }
 
