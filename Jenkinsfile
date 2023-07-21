@@ -3,6 +3,7 @@ pipeline{
 
     environment {
         def dockerImage = 'nguyenngochuy/disk-partition'
+        def containerName = 'disk-partition-service'
     }
 
     stages {
@@ -58,9 +59,9 @@ pipeline{
 
         stage("Deployment"){
             steps {
-                sh "docker stop disk-partition-service"
-                sh "docker rm disk-partition-service"
-                sh "docker run -d -p 8000:8000 --name disk-partition-service ${dockerImage}"
+                sh "docker stop ${containerName}"
+                sh "docker rm ${containerName}"
+                sh "docker run -d -p 8000:8000 --name ${containerName} ${dockerImage}"
             }
         }
     }
