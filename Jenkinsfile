@@ -23,6 +23,7 @@ pipeline{
             steps {
                 dir("Check-Disk-Service"){
                     sh 'bash ./script-build/setup-evn.sh'
+                    sh 'php artisan key:generate'
                 }
             }
         }
